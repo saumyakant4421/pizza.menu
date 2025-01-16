@@ -50,14 +50,49 @@ const pizzaData = [
 function App(){
     return(
     <div>
-        <h1>Hello React!</h1>
-        <Pizza />
+        <Header />
+        <Menu/>
+        <Footer />
     </div>
     );
 }
 
+function Header(){
+    return(
+            <h1>My Pizzeria</h1>
+    );
+}
+
+function Menu(){
+  return(
+    <div>
+    <h2>Our Menu</h2>
+    <Pizza />
+    <Pizza />
+    <Pizza />
+    </div>
+  )
+}
+
+function Footer(){
+    return(
+        <footer>
+            <p>We are open!</p>
+        </footer>
+    );
+}
+
+
+
+
 function Pizza(){
-    return <h2>Pizza Spinaci</h2>
+    return (
+    <div>
+      <img src ="pizzas/spinaci.jpg" />
+      <h2>Pizza Spinaci</h2>
+      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
+    </div>
+    ) 
 }
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<React.StrictMode><App /></React.StrictMode>)
