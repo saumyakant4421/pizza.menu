@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client"
+import "./index.css";
 
 const pizzaData = [
     {
@@ -49,7 +50,7 @@ const pizzaData = [
 
 function App(){
     return(
-    <div>
+    <div className="container">
         <Header />
         <Menu/>
         <Footer />
@@ -59,19 +60,31 @@ function App(){
 
 function Header(){
     return(
+      <header className="header">
             <h1>My Pizzeria</h1>
+      </header>
     );
 }
 
 function Menu(){
   return(
-    <div>
+    <div className = "menu">
     <h2>Our Menu</h2>
     <Pizza />
     <Pizza />
     <Pizza />
     </div>
   )
+}
+ 
+function Pizza(){
+  return (
+  <div>
+    <img src ="pizzas/spinaci.jpg" />
+    <h3>Pizza Spinaci</h3>
+    <p>Tomato, mozarella, spinach, and ricotta cheese</p>
+  </div>
+  ) 
 }
 
 function Footer(){
@@ -85,14 +98,6 @@ function Footer(){
 
 
 
-function Pizza(){
-    return (
-    <div>
-      <img src ="pizzas/spinaci.jpg" />
-      <h2>Pizza Spinaci</h2>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </div>
-    ) 
-}
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<React.StrictMode><App /></React.StrictMode>)
