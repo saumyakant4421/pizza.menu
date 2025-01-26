@@ -70,34 +70,57 @@ function Menu(){
   return(
     <div className = "menu">
     <h2>Our Menu</h2>
-    <Pizza />
-    <Pizza />
-    <Pizza />
-    <Pizza />
+    <ul className="pizzas">
+      {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name}/>
+      ))}
+    </ul>
 
     </div>
   )
 }
  
-function Pizza(){
+function Pizza({pizzaObj}){
   return (
-  <div>
-    <img src ="pizzas/spinaci.jpg" />
-    <h3>Pizza Spinaci</h3>
-    <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-  </div>
+  <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
+    <img src ={pizzaObj.photoName} alt={pizzaObj.photoName}/>
+    <div>
+      <h3>{pizzaObj.name}</h3>
+      <p>{pizzaObj.ingredients}</p>
+      <span>{pizzaObj.soldOut ? "Sold Out": pizzaObj.price}</span>
+    </div>
+  </li>
   ) 
 }
 
-function Footer(){
-    return(
-        <footer>
-            <p>We are open!</p>
-        </footer>
-    );
+function Footer() {
+  const hour = new Date().getHours();
+  const openHours = 12;
+  const closeHours = 23;
+  const isOpen = hour >= openHours && hour <= closeHours;
+
+  return (
+    <footer className="footer">
+      {isOpen ? (
+        <Order closeHours ={closeHours} openHours={openHours}  />
+      ) : (
+        <p>Sorry, we're currently closed. Please visit us between {openHours}:00 and {closeHours}:00.</p>
+      )}
+    </footer>
+  );
 }
 
+function Order({closeHours, openHours}){
+  return(
+    <div className="order">
+    <p>
+      We're open from {openHours}:00 to {closeHours}:00. Come visit us or order online.
+    </p>
+    <button className="btn">Order now</button>
+  </div>
+  )
 
+}
 
 
 
